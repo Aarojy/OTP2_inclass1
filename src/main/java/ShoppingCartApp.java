@@ -5,40 +5,12 @@ import java.util.Scanner;
 public class ShoppingCartApp {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Locale userLocale;
 
         System.out.print("Choose your preferred language (1. English, 2. Finnish, 3. Swedish, 4. Japanese): ");
         String userChoice = input.nextLine();
-
-        String language;
-        String country;
-
-        switch (userChoice) {
-            case "1":
-                country = "US";
-                language = "en";
-                break;
-            case "2":
-                country = "FI";
-                language = "fi";
-                break;
-            case "3":
-                country = "SE";
-                language = "sv";
-                break;
-            case "4":
-                country = "JP";
-                language = "ja";
-                break;
-            default:
-                System.out.println("Unsupported input. Defaulting to English...");
-                language = "EN";
-                country = "US";
-        }
         System.out.println();
 
-        userLocale = new Locale(language, country);
-        ResourceBundle rb = ResourceBundle.getBundle("MessagesBundle", userLocale);
+        ResourceBundle rb = setLanguage(userChoice);
 
         System.out.print(rb.getString("number")+ " ");
         int numberOfItems = Integer.parseInt(input.nextLine());
@@ -60,5 +32,38 @@ public class ShoppingCartApp {
 
     public static double calculateTotal(double price, int quantity) {
         return price * quantity;
+    }
+
+    public static ResourceBundle setLanguage(String choice) {
+        Locale userLocale;
+        String language;
+        String country;
+
+        switch (choice) {
+            case "1":
+                country = "US";
+                language = "en";
+                break;
+            case "2":
+                country = "FI";
+                language = "fi";
+                break;
+            case "3":
+                country = "SE";
+                language = "sv";
+                break;
+            case "4":
+                country = "JP";
+                language = "ja";
+                break;
+            default:
+                System.out.println("Unsupported input. Defaulting to English...");
+                language = "EN";
+                country = "US";
+        }
+
+        userLocale = new Locale(language, country);
+
+        return ResourceBundle.getBundle("MessagesBundle", userLocale);
     }
 }
