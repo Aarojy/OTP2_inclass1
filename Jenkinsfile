@@ -5,6 +5,13 @@ pipeline {
         maven 'Maven3'
     }
 
+    environment {
+        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
+        DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
+        DOCKER_IMAGE = 'aarojy/sep2_inclass_assignment1'
+        DOCKER_TAG = 'latest'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -26,6 +33,28 @@ pipeline {
                 bat 'mvn test jacoco:report'
 
                 bat 'dir target /s'
+            }
+        }
+
+        stage('Build Docker Image') {
+                steps {
+                    script {
+                        if (isUnix()) {
+                            sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                        } else {
+                            bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                        }
+                    }
+                }
+            }
+
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', env.DOCKERHUB_CREDENTIALS_ID) {
+                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
+                    }
+                }
             }
         }
     }
