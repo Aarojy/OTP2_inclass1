@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -101,5 +102,14 @@ class ShoppingCartAppTest {
 
         assertEquals(expectedLanguage, locale.getLanguage());
         assertEquals(expectedCountry, locale.getCountry());
+    }
+
+    @Test
+    void fullApplicationTest() {
+        String simulatedInput = "2\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+
+        assertEquals(ShoppingCartApp.runShop(), 62.0);
     }
 }

@@ -3,10 +3,10 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class ShoppingCartApp {
-    public static void main(String[] args) {
+    public static double runShop() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Choose your preferred language (1. English, 2. Finnish, 3. Swedish, 4. Japanese): ");
+        System.out.print("Choose your preferred language:\n1. English\n2. Finnish (Suomi)\n3. Swedish (Svenska) \n4. Japanese (日本語)\n");
         String userChoice = input.nextLine();
         System.out.println();
 
@@ -28,6 +28,8 @@ public class ShoppingCartApp {
         }
 
         System.out.println(rb.getString("total_cost")+ " " + totalCost);
+
+        return totalCost;
     }
 
     public static double calculateTotal(double price, int quantity) {
