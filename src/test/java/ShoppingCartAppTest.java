@@ -161,12 +161,14 @@ class ShoppingCartAppTest {
 
     @Test
     void testMain() {
+        Main mainApp = new Main();
+
         String simulatedInput = "5\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
         ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(in);
 
         String[] args = {};
-        Main.main(args);
+        mainApp.main(args);
     }
 
     @Test
