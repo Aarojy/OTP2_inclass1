@@ -105,11 +105,103 @@ class ShoppingCartAppTest {
     }
 
     @Test
-    void fullApplicationTest() {
+    void fullApplicationTest_English() {
+        ShoppingCartApp shoppingCartApp = new ShoppingCartApp();
+
+        String simulatedInput = "1\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+
+        assertEquals(62.0, shoppingCartApp.runShop());
+    }
+
+    @Test
+    void fullApplicationTest_Finnish() {
+        ShoppingCartApp shoppingCartApp = new ShoppingCartApp();
+
         String simulatedInput = "2\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
         ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(in);
 
-        assertEquals(ShoppingCartApp.runShop(), 62.0);
+        assertEquals(62.0, shoppingCartApp.runShop());
+    }
+
+    @Test
+    void fullApplicationTest_Sweadish() {
+        ShoppingCartApp shoppingCartApp = new ShoppingCartApp();
+
+        String simulatedInput = "3\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+
+        assertEquals(62.0, shoppingCartApp.runShop());
+    }
+
+    @Test
+    void fullApplicationTest_Japanese() {
+        ShoppingCartApp shoppingCartApp = new ShoppingCartApp();
+
+        String simulatedInput = "4\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+
+        assertEquals(62.0, shoppingCartApp.runShop());
+    }
+
+    @Test
+    void fullApplicationTest_Default() {
+        ShoppingCartApp shoppingCartApp = new ShoppingCartApp();
+
+        String simulatedInput = "5\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+
+        assertEquals(62.0, shoppingCartApp.runShop());
+    }
+
+    @Test
+    void testMain() {
+        String simulatedInput = "5\n3\n10.0\n2\n5.5\n4\n20.0\n1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+
+        String[] args = {};
+        Main.main(args);
+    }
+
+    @Test
+    void testEnglishBundle() {
+        ResourceBundle rb = ShoppingCartApp.setLanguage("1");
+        assertEquals("Enter the number of items to purchase:", rb.getString("number"));
+        assertEquals("Enter the price for item:", rb.getString("price"));
+        assertEquals("Enter the quantity for item:", rb.getString("quantity"));
+        assertEquals("Total cost:", rb.getString("total_cost"));
+    }
+
+    @Test
+    void testFinnishBundle() {
+        ResourceBundle rb = ShoppingCartApp.setLanguage("2");
+        assertEquals("Syötä ostettavien tuotteiden määrä:", rb.getString("number"));
+        assertEquals("Syötä tuotteen hinta:", rb.getString("price"));
+        assertEquals("Syötä tuotteen määrä:", rb.getString("quantity"));
+        assertEquals("Kokonaishinta:", rb.getString("total_cost"));
+    }
+
+    @Test
+    void testSwedishBundle() {
+        ResourceBundle rb = ShoppingCartApp.setLanguage("3");
+        assertEquals("Ange antalet varor att köpa:", rb.getString("number"));
+        assertEquals("Ange priset för varan:", rb.getString("price"));
+        assertEquals("Ange mängden varor:", rb.getString("quantity"));
+        assertEquals("Total kostnad:", rb.getString("total_cost"));
+    }
+
+    @Test
+    void testJapaneseBundle() {
+        ResourceBundle rb = ShoppingCartApp.setLanguage("4");
+        assertEquals("購入する商品の数を入力してください:", rb.getString("number"));
+        assertEquals("商品の価格を入力してください:", rb.getString("price"));
+        assertEquals("商品の数量を入力してください:", rb.getString("quantity"));
+        assertEquals("合計金額:", rb.getString("total_cost"));
     }
 }

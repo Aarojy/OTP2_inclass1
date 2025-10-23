@@ -3,7 +3,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class ShoppingCartApp {
-    public static double runShop() {
+    public double runShop() {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Choose your preferred language:\n1. English\n2. Finnish (Suomi)\n3. Swedish (Svenska) \n4. Japanese (日本語)\n");
