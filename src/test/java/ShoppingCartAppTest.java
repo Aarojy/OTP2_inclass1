@@ -174,6 +174,7 @@ class ShoppingCartAppTest {
     @Test
     void testEnglishBundle() {
         ResourceBundle rb = ShoppingCartApp.setLanguage("1");
+        assertEquals("Welcome!", rb.getString("greeting"));
         assertEquals("Enter the number of items to purchase:", rb.getString("number"));
         assertEquals("Enter the price for item:", rb.getString("price"));
         assertEquals("Enter the quantity for item:", rb.getString("quantity"));
@@ -183,6 +184,7 @@ class ShoppingCartAppTest {
     @Test
     void testFinnishBundle() {
         ResourceBundle rb = ShoppingCartApp.setLanguage("2");
+        assertEquals("Tervetuloa!", rb.getString("greeting"));
         assertEquals("Syötä ostettavien tuotteiden määrä:", rb.getString("number"));
         assertEquals("Syötä tuotteen hinta:", rb.getString("price"));
         assertEquals("Syötä tuotteen määrä:", rb.getString("quantity"));
@@ -192,6 +194,7 @@ class ShoppingCartAppTest {
     @Test
     void testSwedishBundle() {
         ResourceBundle rb = ShoppingCartApp.setLanguage("3");
+        assertEquals("Välkommen!", rb.getString("greeting"));
         assertEquals("Ange antalet varor att köpa:", rb.getString("number"));
         assertEquals("Ange priset för varan:", rb.getString("price"));
         assertEquals("Ange mängden varor:", rb.getString("quantity"));
@@ -201,6 +204,7 @@ class ShoppingCartAppTest {
     @Test
     void testJapaneseBundle() {
         ResourceBundle rb = ShoppingCartApp.setLanguage("4");
+        assertEquals("歓迎!", rb.getString("greeting"));
         assertEquals("購入する商品の数を入力してください:", rb.getString("number"));
         assertEquals("商品の価格を入力してください:", rb.getString("price"));
         assertEquals("商品の数量を入力してください:", rb.getString("quantity"));

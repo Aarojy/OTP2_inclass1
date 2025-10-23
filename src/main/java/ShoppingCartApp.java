@@ -12,6 +12,8 @@ public class ShoppingCartApp {
 
         ResourceBundle rb = setLanguage(userChoice);
 
+        System.out.println(rb.getString("greeting"));
+
         System.out.print(rb.getString("number")+ " ");
         int numberOfItems = Integer.parseInt(input.nextLine());
 
